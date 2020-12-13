@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>JS算法题整理</title>
+    <url>/posts/4a7b3bce.html</url>
+    <content><![CDATA[<h3 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h3><h4 id="冒泡排序法"><a href="#冒泡排序法" class="headerlink" title="冒泡排序法"></a>冒泡排序法</h4><ol>
+<li>比较相邻的两个元素，如果前一个比后一个大，则交换位置。</li>
+<li>第一轮的时候最后一个元素是最大的一个。</li>
+<li>按照步骤一的方法进行相邻两个元素的比较，由于最后一个元素已经是最大的了，因此最后一个元素不用比较。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10, 20, 5, 8, 21, 100, 99];</span><br><span class="line">function test() &#123;</span><br><span class="line">  for (var i &#x3D; 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">    for (var k &#x3D; 0; k &lt; arr.length - i - 1; k++) &#123;</span><br><span class="line">      if (arr[k] &gt; arr[k + 1]) &#123;</span><br><span class="line">        var temp &#x3D; arr[k + 1];</span><br><span class="line">        arr[k + 1] &#x3D; arr[k];</span><br><span class="line">        arr[k] &#x3D; temp;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  console.log(arr)</span><br><span class="line">&#125;</span><br><span class="line">test();</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<h4 id="sort排序"><a href="#sort排序" class="headerlink" title="sort排序"></a>sort排序</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arr &#x3D; [10, 20, 5, 8, 21, 100, 99];</span><br><span class="line">arr.sort(function(n1, n2) &#123;</span><br><span class="line">  return n1 - n2; &#x2F;&#x2F;由小到大进行排序</span><br><span class="line">&#125;);</span><br><span class="line">console.log(arr);</span><br></pre></td></tr></table></figure>
+
+<h3 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h3><h4 id="字符串去重"><a href="#字符串去重" class="headerlink" title="字符串去重"></a>字符串去重</h4><ol>
+<li>转换成数组进行遍历，删除重复项</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var str &#x3D; &quot;aaabccdeeeeeeff&quot;;</span><br><span class="line">var strArr &#x3D; str.split(&quot;&quot;);</span><br><span class="line">var a &#x3D; [];</span><br><span class="line">for (var i &#x3D; 0; i &lt; strArr.length; i++) &#123;</span><br><span class="line">  a.push(strArr[i]);</span><br><span class="line">  for (var k &#x3D; i; k &lt; strArr.length - 1; k++) &#123;</span><br><span class="line">    if (strArr[i] &#x3D;&#x3D; strArr[k + 1]) &#123;</span><br><span class="line">      strArr.splice(k + 1, 1);</span><br><span class="line">      k--;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(a);</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>直接字符串遍历，把不同的字符串拼到一起</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function quChong(str) &#123;</span><br><span class="line">  var newStr &#x3D; &quot;&quot;;</span><br><span class="line">  var flag;</span><br><span class="line">  for (var i &#x3D; 0; i &lt; str.length; i++) &#123;</span><br><span class="line">    flag &#x3D; 1;</span><br><span class="line">    for (var j &#x3D; 0; j &lt; newStr.length; j++) &#123;</span><br><span class="line">      if (str[i] &#x3D;&#x3D; newStr[j]) &#123;</span><br><span class="line">        flag &#x3D; 0;</span><br><span class="line">        break;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (flag) newStr +&#x3D; str[i];</span><br><span class="line">  &#125;</span><br><span class="line">  return newStr;</span><br><span class="line">&#125;</span><br><span class="line">console.log(quChong(&#39;aaabbbbcccddeefffff&#39;)); &#x2F;&#x2F;abcdef</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>indexOf方法<br>检查初始字符串的值是否存在于新字符串中，如果没有，就把它拼起来。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function quChong(str) &#123;</span><br><span class="line">  var newStr &#x3D; &quot;&quot;;</span><br><span class="line">  for (var i &#x3D; 0;i &lt; str.length; i++)&#123;</span><br><span class="line">    if (newStr.indexOf(str[i]) &#x3D;&#x3D; -1)&#123;</span><br><span class="line">      newStr +&#x3D; str[i];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return newStr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="整型数组去重"><a href="#整型数组去重" class="headerlink" title="整型数组去重"></a>整型数组去重</h4><p>利用Object的key进行筛选</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">* unique an array </span><br><span class="line">**&#x2F;</span><br><span class="line">let unique &#x3D; function(arr) &#123;</span><br><span class="line">  let hashTable &#x3D; &#123;&#125;;</span><br><span class="line">  let data &#x3D; [];</span><br><span class="line">  for (let i &#x3D; 0, l &#x3D; arr.length; i &lt; l; i++) &#123;</span><br><span class="line">    if (!hashTable[arr[i]]) &#123;</span><br><span class="line">      hashTable[arr[i]] &#x3D; true;</span><br><span class="line">      data.push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  return data</span><br><span class="line">&#125;</span><br><span class="line">console.log(unique([4,5,4,6,6,7,5,11,2]))</span><br><span class="line">module.exports &#x3D; unique;</span><br></pre></td></tr></table></figure>
+
+<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><p>某些时候递归能替换for循环</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var arrList &#x3D; [1, 2, 3, 5, 100, 500, 10000, 10000, 1000, 10000002]</span><br><span class="line">&#x2F;&#x2F; for循环测试</span><br><span class="line">function forTest() &#123;</span><br><span class="line">  console.time(&quot;for循环&quot;)</span><br><span class="line">  for (let i in arrList) &#123;</span><br><span class="line">    console.log(((arrList[i] + arrList[i]) * 5 - arrList[i]) &#x2F; arrList[i])</span><br><span class="line">  &#125;</span><br><span class="line">  console.timeEnd(&quot;for循环&quot;)</span><br><span class="line">&#125;</span><br><span class="line">forTest()</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 递归遍历测试</span><br><span class="line">function recursive() &#123;</span><br><span class="line">  console.log(&quot;递归遍历&quot;);</span><br><span class="line">  const testFun &#x3D; function (i) &#123;</span><br><span class="line">    console.log(((arrList[i] + arrList[i]) * 5 - arrList[i])&#x2F;arrList[i])</span><br><span class="line">    if (i &#x3D;&#x3D; arrList.length - 1) &#123;</span><br><span class="line">      return</span><br><span class="line">    &#125;</span><br><span class="line">    i++</span><br><span class="line">    testFun(i)</span><br><span class="line">  &#125;</span><br><span class="line">  testFun(0)</span><br><span class="line">  console.timeEnd(&quot;递归遍历&quot;)</span><br><span class="line">&#125;</span><br><span class="line">recursive()</span><br></pre></td></tr></table></figure>
+
+<p>在控制台中运行上述代码，可以看到，for循环去遍历一个数组和用递归遍历去遍历同一个数组得到的结果一样，耗时也几乎相同。但是写法上有很大区别。</p>
+<p>递归特点：<br>每个递归都有一个结束递归的条件，上例中的：<code>if(i == arrList.length - 1)&#123; return &#125;</code>。每一个递归都会在函数内部把函数本身调用一次，但是函数在每次运行的时候，都会发生一些变化，用来触发递归的结束，上例中，testFun函数在内部调用了自己，并且每次调用i的值会+1，最终触发了结束条件，让递归结束。</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用nvm优雅管理多版本Node</title>
+    <url>/posts/d9804446.html</url>
+    <content><![CDATA[<p>在开发中，有时候对node的版本有要求，需要切换到指定的node版本来重现问题等。遇到这种需求的时候，我们需要能够灵活的切换node版本。<br>这里我们使用<code>nvm</code>工具来管理多版本node。</p>
+<p><code>nvm</code>的具体安装方法这里暂时不展开来说啦，贴上 <a href="https://github.com/creationix/nvm/blob/master/README.md">传送门</a> 。<br>安装成功后，我们便可以开始使用nvm相关指令。</p>
+<h1 id="安装新的node版本"><a href="#安装新的node版本" class="headerlink" title="安装新的node版本"></a>安装新的node版本</h1><p>然后我们尝试更换一个lts版本的node。lts版本是会长期支持的版本，一般在生产环境使用的时候选择lts版本的node。也可以去掉lts参数，查看更多的版本。<br><code>nvm ls-remote --lts</code></p>
+<p><img src="https://www.tom-chen.cn/2020/04/30/%E4%BD%BF%E7%94%A8nvm%E4%BC%98%E9%9B%85%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%ACNode/WX20200430-142837@2x.png" alt="查看node的以往的lts版本"></p>
+<p>找到你所需要安装的node版本，输入以下指令：<br><code>nvm install v10.20.1</code><br>等待一会儿安装成功后。执行<code>node -v</code>查看版本号已经是v10.20.1了。</p>
+<h1 id="切换node版本"><a href="#切换node版本" class="headerlink" title="切换node版本"></a>切换node版本</h1><p>通过<code>nvm ls</code>命令可以查看已经安装的版本。</p>
+<p><img src="https://www.tom-chen.cn/2020/04/30/%E4%BD%BF%E7%94%A8nvm%E4%BC%98%E9%9B%85%E7%AE%A1%E7%90%86%E5%A4%9A%E7%89%88%E6%9C%ACNode/WX20200430-110307@2x.png" alt="查看node的以往的lts版本"></p>
+<p>前三行是已经安装的版本，左侧绿色箭头指向的就是当前使用的版本。system为目前系统安装的版本，下面的内容是nvm的内置的几个固定的别名（alias）。</p>
+<ul>
+<li>default nvm 默认使用的版本</li>
+<li>node和stable 当前安装的node的最新的稳定版本</li>
+<li>iojs iojs的最新稳定版本</li>
+<li>lts/* node lts 系列最新的稳定版本</li>
+<li>lts/argon, lts/boron, lts/carbon, lts/dubnium, lst/erbium 分别指lts的几个大版本的最新版本</li>
+</ul>
+<p>大家可以自行安装一下最新的lts/dubnium版本，然后再查看<code>nvm ls</code>的结果。<br><code>nvm install lts/dubnium</code></p>
+<p>我们可以用别名来切换版本，也可以使用版本号来切换。<br><code>nvm use lts/dubnium</code></p>
+<p>不过这种方式切换node版本只能临时切换，当你开启新的terminal窗口的时候就失效了。如果要彻底的切换过来需要这么操作：<br><code>nvm alias default xxxx</code></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>JavaScript知识点整理</title>
+    <url>/posts/b480966b.html</url>
+    <content><![CDATA[<h3 id="JavaScript数据类型总结"><a href="#JavaScript数据类型总结" class="headerlink" title="JavaScript数据类型总结"></a>JavaScript数据类型总结</h3><p>数据类型指的就是字面量的类型，可以分为两类：1. 原始类型(基本类型); 2. 引用类型。</p>
+<ol>
+<li>基本数据类型(原始数据类型)</li>
+</ol>
+<ul>
+<li>String(字符串)</li>
+<li>Number(数字)</li>
+<li>Boolean(布尔)</li>
+<li>Null(对空)</li>
+<li>Undefined(为定义)</li>
+<li>Symbol(ES6 引入了一种新的原始数据类型，表示独一无二的值。)</li>
+<li>BigInt(ES10)</li>
+</ul>
+<ol>
+<li>引用数据类型</li>
+</ol>
+<ul>
+<li>Object<ul>
+<li>Array</li>
+<li>Function</li>
+<li>Date</li>
+<li>…</li>
+</ul>
+</li>
+</ul>
+<h3 id="隐式转换"><a href="#隐式转换" class="headerlink" title="隐式转换"></a>隐式转换</h3><p>该部分内容参考自<a href="https://www.cnblogs.com/zhuyeshen/p/10997893.html">《那些年的代码的博客》</a></p>
+<a id="more"></a>
+
+<ol>
+<li><p><code>+</code> 和 <code>-</code><br>巧用 + 和 - 规则转换类型<br>把变量转换成<strong>数字</strong>：<code>num - 0</code><br>把变量转换成<strong>字符串</strong>：<code>num + &#39;&#39;</code></p>
+</li>
+<li><p>a == b</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&quot;1.23&quot; &#x3D;&#x3D; 1.23 &#x2F;&#x2F;true</span><br><span class="line">0 &#x3D;&#x3D; false &#x2F;&#x2F;true</span><br><span class="line">null &#x3D;&#x3D; undefined &#x2F;&#x2F;true</span><br><span class="line">new Object() &#x3D;&#x3D; new Object() &#x2F;&#x2F;true</span><br><span class="line">[1, 2] &#x3D;&#x3D; [1, 2] &#x2F;&#x2F;true</span><br><span class="line">NaN &#x3D;&#x3D; NaN &#x2F;&#x2F;false</span><br><span class="line">null &#x3D;&#x3D; NaN &#x2F;&#x2F;false</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>a === b</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">0 &#x3D;&#x3D;&#x3D; false &#x2F;&#x2F;false</span><br><span class="line">null &#x3D;&#x3D;&#x3D; null &#x2F;&#x2F;true</span><br><span class="line">undefined &#x3D;&#x3D;&#x3D; undefined &#x2F;&#x2F;true</span><br><span class="line">null &#x3D;&#x3D;&#x3D; undefined &#x2F;&#x2F;false</span><br><span class="line">NaN &#x3D;&#x3D;&#x3D; NaN &#x2F;&#x2F;false</span><br><span class="line">new Object &#x3D;&#x3D;&#x3D; new Object &#x2F;&#x2F;false</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="类型检测"><a href="#类型检测" class="headerlink" title="类型检测"></a>类型检测</h3><p>JavaScript中类型检测方法有很多种：</p>
+<ul>
+<li><code>typeof</code></li>
+<li><code>instanceof</code></li>
+<li><code>Object.prototype.toString</code></li>
+<li><code>constructor</code></li>
+<li><code>duck type</code></li>
+</ul>
+<p>下面将具体列出这几种检测方法的用法和特点：</p>
+<h4 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a><code>typeof</code></h4><p>最常见的就是 <code>typeof</code>：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">typeof 100 &#x2F;&#x2F;number</span><br><span class="line">typeof true &#x2F;&#x2F;boolean</span><br><span class="line">typeof function()&#123;&#125; &#x2F;&#x2F;function</span><br><span class="line">typeof undefined &#x2F;&#x2F;undefined</span><br><span class="line">typeof new Object() &#x2F;&#x2F;object</span><br><span class="line">typeof [1, 2] &#x2F;&#x2F;object</span><br><span class="line">typeof NaN &#x2F;&#x2F;number</span><br><span class="line">typeof null &#x2F;&#x2F;object</span><br></pre></td></tr></table></figure>
+
+<p>比较特殊的是<code>typeof null</code>返回<code>object</code>。<br><code>typeof NaN</code>返回<code>number</code>，NaN 参与任何数值计算的结构都是 NaN，而且<code>NaN != NaN</code> 。<br><code>typeof </code>对基本类型和函数对象很方便，但是其他类型就没办法了。</p>
+<p>判断一个对象是不是数组？用 <code>typeof</code>返回“object”。对对象的判断常用<code>instanceof</code>：</p>
+<h4 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a><code>instanceof</code></h4><p>基于原型链操作。<code>obj instanceof Object</code>。<br>左操作数为<strong>对象</strong>，不是就返回<code>false</code>，右操作数必须是<strong>函数对象</strong>或者<strong>函数构造器</strong>，不是就返回<code>typeError</code>异常。<br>原理：判断左边的左操作数的对象的原型链上是否有右边这个构造函数的<code>prototype</code>属性。</p>
+<p><img src="https://www.tom-chen.cn/2020/11/29/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/instanceof.png" alt="instanceof具体操作演示"></p>
+<p>任何一个构造函数都有一个prototype对象属性，这个对象属性将用作new出来的对象的原型。<br><code>bosn instanceof Person</code>的时候发现bosn的原型也就是<code>Student.prototype</code>不等于<code>Person.prototype</code>，所以原型链还会向上查找，bosn的原型的原型等于<code>Person.prototype</code>所以返回<code>true</code>。<br>instanceof在判断对象是不是<strong>数组</strong>，<strong>Data</strong>，<strong>正则</strong>等时很好用。</p>
+<blockquote>
+<p>instanceof坑：不同window或iframe之间的对象类型检测不能使用instanceof！</p>
+</blockquote>
+<h4 id="Object-prototype-toString"><a href="#Object-prototype-toString" class="headerlink" title="Object.prototype.toString"></a>Object.prototype.toString</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Object.prototype.toString.apply([]); &#x2F;&#x2F;&quot;[object Array]&quot;</span><br><span class="line">Object.prototype.toString.apply(function ()&#123;&#125;); &#x2F;&#x2F;&quot;[object Function]&quot;</span><br><span class="line">Object.prototype.toString.apply(null); &#x2F;&#x2F;&quot;[object Null]&quot;</span><br><span class="line">Object.prototype.toString.apply(undefined); &#x2F;&#x2F;&quot;[object Undefined]&quot;</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是IE6/7/8中 <code>Object.prototype.toString.apply(null)</code>返回<code>“[object Object]”</code>。</p>
+<h4 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Student.prototype.constructor &#x3D;&#x3D;&#x3D; Student; &#x2F;&#x2F;true</span><br></pre></td></tr></table></figure>
+
+<p>任何对象都有constructor属性，继承自原型的，constructor会指向构造这个对象的构造器或者构造函数。<br>constructor可以被改写，所以使用要小心。</p>
+<h4 id="duck-typing"><a href="#duck-typing" class="headerlink" title="duck typing"></a>duck typing</h4><p>计算机领域中，duck typing相对应的是normal typing（对象的类型决定了对象的特性），duck typing中对象的类型不重要，只要对象有类型A的方法和属性，那么它被当做类型A来使用。<br>比如不知道一个对象是不是数组，可以判断它的length是不是数字，它是不是有join，push这样一些数组的方法。通过一些特征判断对象是否属于某些类型，这个有时候也常用。</p>
+<h3 id="new操作中发生了什么？-可以继续补充"><a href="#new操作中发生了什么？-可以继续补充" class="headerlink" title="new操作中发生了什么？(可以继续补充)"></a>new操作中发生了什么？(可以继续补充)</h3><p>比较直观的感觉，当我们new一个构造函数，得到的实例继承了<strong>构造器的构造属性</strong>(this.name这些)以及<strong>原型上的属性</strong>。<br>在《JavaScript模式》这本书中，new的过程说的比较直白，当我们new一个构造器，主要有三步：</p>
+<ul>
+<li>创建一个空对象，将它的引用赋给 this，继承函数的原型；</li>
+<li>通过 this 将属性和方法添加至这个对象；</li>
+<li>最后返回 this 指向的新对象，也就是实例（如果没有手动返回其他的对象）。</li>
+</ul>
+<h3 id="JavaScript中var，let，const的区别"><a href="#JavaScript中var，let，const的区别" class="headerlink" title="JavaScript中var，let，const的区别"></a>JavaScript中var，let，const的区别</h3><ol>
+<li><p>var定义的变量可以被修改，存在变量提升的问题，如果不初始化会输出undefined，不会报错。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var a &#x3D; 1;</span><br><span class="line">&#x2F;&#x2F; var a; &#x2F;&#x2F;不会报错</span><br><span class="line">console.log(&#39;函数外var定义a：&#39; + a); &#x2F;&#x2F;函数外var定义a：1</span><br><span class="line">function change()&#123;</span><br><span class="line">  a &#x3D; 4;</span><br><span class="line">  console.log(&#39;函数内var定义a：&#39; + a);&#x2F;&#x2F;函数外var定义a：4</span><br><span class="line">&#125;</span><br><span class="line">change();</span><br><span class="line">console.log(&#39;函数调用后var定义a为函数内部修改值：&#39; + a); &#x2F;&#x2F;函数调用后var定义a为函数内部修改值：4</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>let是块级作用域，函数内部使用let定义后，对函数外部无影响。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">let b &#x3D; 3;</span><br><span class="line">console.log(&#39;函数外let定义b：&#39; + b); &#x2F;&#x2F;函数外let定义b：3</span><br><span class="line">function change() &#123;</span><br><span class="line">let b &#x3D; 6;</span><br><span class="line">console.log(&#39;函数内let定义b：&#39; + b); &#x2F;&#x2F;函数外let定义b：6</span><br><span class="line">&#125;</span><br><span class="line">change();</span><br><span class="line">console.log(&#39;函数调用后let定义b不受函数内部定义影响：&#39; + b); &#x2F;&#x2F;函数调用后let定义b不受函数内部定义影响：3</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>const定义的变量不可以修改，而且必须初始化。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">const c &#x3D; 2; &#x2F;&#x2F;正确</span><br><span class="line">&#x2F;&#x2F;const b; &#x2F;&#x2F;错误，必须初始化</span><br><span class="line">console.log(&#39;函数外const定义c：&#39; + c); &#x2F;&#x2F;函数外const定义c：2</span><br><span class="line">&#x2F;&#x2F; c &#x3D; 5; &#x2F;&#x2F;无法被修改</span><br><span class="line">&#x2F;&#x2F; console.log(&#39;函数外修改const定义c：&#39; + c); &#x2F;&#x2F;报错</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<blockquote>
+<p>补充：<br>var：只有全局作用域和函数作用域概念，没有块级作用域的概念。但是会把{ }内也假称为块作用域。<br>let：只有块级作用域的概念 ，由{ }包括起来，if语句和for语句里面的{ }也属于块级作用域。<br>同一作用域下let和const不能声明同名变量，而var可以。</p>
+</blockquote>
+<h3 id="JavaScript中的call-和apply"><a href="#JavaScript中的call-和apply" class="headerlink" title="JavaScript中的call()和apply()"></a>JavaScript中的call()和apply()</h3><p>该部分内容参考自<a href="https://www.jianshu.com/p/aa2eeecd8b4f">JS中call()和apply()</a></p>
+<p>每个函数都包含两个非继承而来的方法：call()和apply()。<br>在JavaScript中，call和apply作用是一样的，都是为了改变某个函数运行时的上下文（context）而存在的，换句话说，就是为了改变函数体内部this的指向。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function fruits() &#123;&#125;</span><br><span class="line"></span><br><span class="line">fruits.prototype &#x3D; &#123;</span><br><span class="line">  color: &quot;red&quot;,</span><br><span class="line">  say: function() &#123;</span><br><span class="line">    console.log(&quot;My color is &quot; + this.color);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var apple &#x3D; new fruits;</span><br><span class="line">apple.say(); &#x2F;&#x2F;My color is red</span><br></pre></td></tr></table></figure>
+
+<p>当另一个对象想使用fruits中的<code>say()</code>方法时不用重新写，使用call和apply可以实现“劫持”别人的方法。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function fruits()&#123;&#125;</span><br><span class="line">            </span><br><span class="line">fruits.prototype &#x3D; &#123;</span><br><span class="line">  color: &quot;red&quot;,</span><br><span class="line">  say: function()&#123;</span><br><span class="line">    console.log(&quot;My color is &quot; + this.color);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var another &#x3D; &#123;</span><br><span class="line">  color: &quot;yellow&quot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">var apple &#x3D; new fruits;</span><br><span class="line">apple.say();                &#x2F;&#x2F;My color is red</span><br><span class="line">apple.say.call(another);    &#x2F;&#x2F;My color is yellow</span><br><span class="line">apple.say.apply(another);   &#x2F;&#x2F;My color is yellow</span><br></pre></td></tr></table></figure>
+
+<p>区别：参数书写方式不同。<br><strong>call(thisObj, arg1, arg2, …);</strong><br><strong>apply(thisObj, [args]);</strong></p>
+<p><strong>thisObj</strong>： call和apply第一个参数是一样的，该参数将替代Function类里面的this对象。<br><strong>arg1, arg2, …</strong>：是一个个的参数，必须全部都列出来。<br><strong>args</strong>：一个数组或类数组，是一个参数列表。</p>
+<p>用法：</p>
+<ul>
+<li><p>改变函数作用域</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var name &#x3D; &quot;小白&quot;;</span><br><span class="line">var obj &#x3D; &#123;</span><br><span class="line">    name: &quot;小红&quot;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">function sayName() &#123;</span><br><span class="line">    return this.name;</span><br><span class="line">&#125;</span><br><span class="line">console.log(sayName.call(this)); &#x2F;&#x2F;小白</span><br><span class="line">console.log(sayName.call(obj)); &#x2F;&#x2F;小红</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实现继承</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;实现js继承</span><br><span class="line">&#x2F;&#x2F;父类</span><br><span class="line">function Person(name, height) &#123;</span><br><span class="line">  this.sayInfo &#x3D; function() &#123;</span><br><span class="line">    return &quot;姓名：&quot; + name + &quot;, 身高：&quot; + height + &quot;, 体重：&quot; + this.weight;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">function Chinese(name, height, weight) &#123;</span><br><span class="line">  Person.call(this, name, height);</span><br><span class="line">  this.weight &#x3D; weight;</span><br><span class="line">  this.nation &#x3D; function() &#123;</span><br><span class="line">    console.log(&quot;我是中国人&quot;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F;子类</span><br><span class="line">function America(name, height, weight) &#123;</span><br><span class="line">  Person.apply(this, [name, height]);</span><br><span class="line">  this.weight &#x3D; weight;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let chiness &#x3D; new Chinese(&quot;成龙&quot;, &quot;178cm&quot;, &quot;60kg&quot;);</span><br><span class="line">console.log(chiness.sayInfo());    &#x2F;&#x2F;姓名：成龙, 身高：178cm, 体重：60kg</span><br><span class="line">let america &#x3D; new America(&quot;jack&quot;, &quot;180cm&quot;, &quot;55kg&quot;);</span><br><span class="line">console.log(america.sayInfo());    &#x2F;&#x2F;姓名：jack, 身高：180cm, 体重：55kg</span><br></pre></td></tr></table></figure>
+
+<p>子类里面的 <code>Person.call(this, name, height);</code> 是调用了父类构造方法，使用 call 将父类的this指向子类，则父类中 this.sayInfo = … 相当于子类执行了this.sayInfo = … ，则子类就继承了父类的属性和方法。<br>使用构造函数继承，每个子类实例中都有一个单独的副本，不会相互影响。</p>
+</li>
+</ul>
+<h3 id="JS的原型和原型链"><a href="#JS的原型和原型链" class="headerlink" title="JS的原型和原型链"></a>JS的原型和原型链</h3><p>该部分内容参考自饕餮猪的简书文章<a href="https://www.jianshu.com/p/be7c95714586">JS的原型和原型链</a><br>构造函数创建对象：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person &#x3D; new Person();</span><br><span class="line">person.name &#x3D; &#39;Kevin&#39;;</span><br><span class="line">console.log(person.name) &#x2F;&#x2F; Kevin</span><br></pre></td></tr></table></figure>
+
+<p>Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person。</p>
+<h4 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h4><p>每个函数都有一个 prototype 属性。<br>每一个JavaScript对象(null除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型”继承”属性。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#x2F;&#x2F; 虽然写在注释里，但是你要注意：</span><br><span class="line">&#x2F;&#x2F; prototype是函数才会有的属性</span><br><span class="line">Person.prototype.name &#x3D; &#39;Kevin&#39;;</span><br><span class="line">var person1 &#x3D; new Person();</span><br><span class="line">var person2 &#x3D; new Person();</span><br><span class="line">console.log(person1.name) &#x2F;&#x2F; Kevin</span><br><span class="line">console.log(person2.name) &#x2F;&#x2F; Kevin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.tom-chen.cn/2020/11/29/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/prototype.png" alt="prototype示例图"></p>
+<h4 id="proto"><a href="#proto" class="headerlink" title="proto"></a>proto</h4><p>每一个JavaScript对象(除了 null )都具有的一个属性，叫proto，这个属性会指向该对象的原型。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">var person &#x3D; new Person();</span><br><span class="line">console.log(person.__proto__ &#x3D;&#x3D;&#x3D; Person.prototype); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.tom-chen.cn/2020/11/29/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/proto.png" alt="proto示例图"></p>
+<h4 id="constructor"><a href="#constructor" class="headerlink" title="constructor"></a>constructor</h4><p>每个原型都有一个 constructor 属性指向关联的构造函数 实例原型指向构造函数。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(Person &#x3D;&#x3D;&#x3D; Person.prototype.constructor); &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.tom-chen.cn/2020/11/29/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/constructor.png" alt="constructor示例图"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var person &#x3D; new Person();</span><br><span class="line"></span><br><span class="line">console.log(person.__proto__ &#x3D;&#x3D; Person.prototype) &#x2F;&#x2F; true</span><br><span class="line">console.log(Person.prototype.constructor &#x3D;&#x3D; Person) &#x2F;&#x2F; true</span><br><span class="line">&#x2F;&#x2F; 顺便学习一个ES5的方法,可以获得对象的原型</span><br><span class="line">console.log(Object.getPrototypeOf(person) &#x3D;&#x3D;&#x3D; Person.prototype) &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<h4 id="实例与原型"><a href="#实例与原型" class="headerlink" title="实例与原型"></a>实例与原型</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">function Person() &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.name &#x3D; &#39;Kevin&#39;;</span><br><span class="line"></span><br><span class="line">var person &#x3D; new Person();</span><br><span class="line"></span><br><span class="line">person.name &#x3D; &#39;Daisy&#39;;</span><br><span class="line">console.log(person.name) &#x2F;&#x2F; Daisy</span><br><span class="line"></span><br><span class="line">delete person.name;</span><br><span class="line">console.log(person.name) &#x2F;&#x2F; Kevin</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们给实例对象 person 添加了 name 属性，当我们打印 person.name 的时候，结果自然为 Daisy。<br>但是当我们删除了 person 的 name 属性时，读取 person.name，从 person 对象中找不到 name 属性就会从 person 的原型也就是 person.proto ，也就是 Person.prototype中查找，幸运的是我们找到了 name 属性，结果为 Kevin。</p>
+<h4 id="原型与原型"><a href="#原型与原型" class="headerlink" title="原型与原型"></a>原型与原型</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var obj &#x3D; new Object();</span><br><span class="line">obj.name &#x3D; &#39;Kevin&#39;</span><br><span class="line">console.log(obj.name) &#x2F;&#x2F; Kevin</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.tom-chen.cn/2020/11/29/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/%E5%8E%9F%E5%9E%8B%E4%B8%8E%E5%8E%9F%E5%9E%8B.png" alt="原型与原型示例图"></p>
+<h4 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h4><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">console.log(Object.prototype.__proto__ &#x3D;&#x3D;&#x3D; null) &#x2F;&#x2F; true</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.tom-chen.cn/2020/11/29/JavaScript%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86/%E5%8E%9F%E5%9E%8B%E9%93%BE.png" alt="原型链示例图"></p>
+<p>JavaScript 默认并不会复制对象的属性，相反，JavaScript 只是在两个对象之间创建一个关联，这样，一个对象就可以通过委托访问另一个对象的属性和函数，所以与其叫继承，委托的说法反而更准确些。</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>哈希算法的精简运用</title>
+    <url>/posts/b3d26d58.html</url>
+    <content><![CDATA[<p>Hash算法，简称散列算法，也可英译为哈希算法。可用于将一个大文件映射成一个小串字符串。与指纹一样，就是以较短的信息来保证文件的唯一性标志，这种标志与文件的每一个字节都相关，而且难以找到逆向规律。</p>
+<p>简单点说，hash就是将任意长度的消息压缩成某一固定长度的消息摘要的函数。</p>
+<p>可能仅仅看文字是很难理解，下面一段代码可能会让你更能进一步了解到它的用处。</p>
+<a id="more"></a>
+
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> array = [</span><br><span class="line">    &#123;</span><br><span class="line">      time: <span class="string">&#x27;2018-11-14&#x27;</span>,</span><br><span class="line">      text: <span class="string">&#x27;123&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      time: <span class="string">&#x27;2018-11-13&#x27;</span>,</span><br><span class="line">      text: <span class="string">&#x27;321&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      time: <span class="string">&#x27;2018-11-28&#x27;</span>,</span><br><span class="line">      text: <span class="string">&#x27;233&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      time: <span class="string">&#x27;2018-11-13&#x27;</span>,</span><br><span class="line">      text: <span class="string">&#x27;322&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">]; <span class="comment">//假设有这么一段对象数组格式</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = &#123;&#125;;</span><br><span class="line">array.forEach( <span class="function"><span class="keyword">function</span>(<span class="params">item, index</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!data[item.time]) &#123;</span><br><span class="line">        data[item.time] = [item.text]</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        data[item.time].push(item.text)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(data);</span><br></pre></td></tr></table></figure>
+
+<p>以time作为key值对数组里的每一个对象进行遍历，当key值为相等时，则把text值push到该key值所对应的数组，最后可以输入以下的结果：</p>
+<blockquote>
+<p>2018-11-13: [“321”, “322”]<br>2018-11-14: [“123”]<br>2018-11-28: [“233”]<br><strong>proto</strong>: Obj</p>
+</blockquote>
+<p>当然，这样的效果还可以应用到一些简单的项目案例中，比如说朋友圈的个人主页布局，将相同日期的动态push到一个数组里面，再进行渲染，非常省事。</p>
+]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+</search>
