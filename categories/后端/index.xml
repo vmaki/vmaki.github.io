@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>后端 on Maki 的主页</title><link>https://vmaki.github.io/categories/%E5%90%8E%E7%AB%AF/</link><description>Recent content in 后端 on Maki 的主页</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 16 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vmaki.github.io/categories/%E5%90%8E%E7%AB%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>封装属于你的Gin框架（一）：开篇 &amp; 项目初始化</title><link>https://vmaki.github.io/p/go/</link><pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate><guid>https://vmaki.github.io/p/go/</guid><description>&lt;img src="https://vmaki.github.io/p/go/go-gin.webp" alt="Featured image of post 封装属于你的Gin框架（一）：开篇 &amp; 项目初始化" />&lt;h3 id="前言">前言&lt;/h3>
+&lt;p>我是一名 phper，由于各方面因素，决定转战 Go，PHP 基本都是用来开发 Web 项目的，所以这次就使用 Go 中最流行的 Web 框架 Gin 来进行二次封装，由于它自由度很高，没办法像 PHP 框架 Laravel 开箱即用，所以就诞生了这个系列的文章，带你一步步将基础服务封装到 Gin 中，方便以后更愉快的 CURD&lt;/p>
+&lt;h3 id="适用人群">适用人群&lt;/h3>
+&lt;ul>
+&lt;li>懂得安装 Go 环境及其基本语法&lt;/li>
+&lt;li>会使用 Go Modules 管理项目&lt;/li>
+&lt;li>略微有一点点点的开发经验&lt;/li>
+&lt;/ul>
+&lt;h3 id="目录结构">目录结构&lt;/h3>
+&lt;p>&lt;img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6e4c24c6f39c47908c5295ba01e9c7c7~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?"
+loading="lazy"
+alt="image-20211009001616865.png"
+>&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>文件/目录名称&lt;/th>
+&lt;th>说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>app/common&lt;/td>
+&lt;td>公共模块（请求、响应结构体等）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>app/controllers&lt;/td>
+&lt;td>业务调度器&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>app/middleware&lt;/td>
+&lt;td>中间件&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>app/models&lt;/td>
+&lt;td>数据库结构体&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>app/services&lt;/td>
+&lt;td>业务层&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>bootstrap&lt;/td>
+&lt;td>项目启动初始化&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>config&lt;/td>
+&lt;td>配置结构体&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>global&lt;/td>
+&lt;td>全局变量&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>routes&lt;/td>
+&lt;td>路由定义&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>static&lt;/td>
+&lt;td>静态资源（允许外部访问）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>storage&lt;/td>
+&lt;td>系统日志、文件等静态资源）&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>utils&lt;/td>
+&lt;td>工具函数&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>config.yaml&lt;/td>
+&lt;td>配置文件&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>main.go&lt;/td>
+&lt;td>项目启动文件&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="初始化项目">初始化项目&lt;/h3>
+&lt;ol>
+&lt;li>先在 &lt;code>~/go/src&lt;/code> 目录下创建一个目录 &lt;code>jassue-gin&lt;/code> 用来存放项目代码&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>mkdir ~/go/src/jassue-gin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>在项目根目录下，初始化 &lt;code>go.mod&lt;/code> 文件&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>go mod init jassue-gin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>安装 Gin&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-shell" data-lang="shell">&lt;span style="display:flex;">&lt;span>go get -u github.com/gin-gonic/gin
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;ol>
+&lt;li>在项目根目录下编写 &lt;code>main.go&lt;/code> 文件&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;div style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+&lt;table style="border-spacing:0;padding:0;margin:0;border:0;">&lt;tr>&lt;td style="vertical-align:top;padding:0;margin:0;border:0;">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 1
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 2
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 3
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 4
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 5
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 6
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 7
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 8
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f"> 9
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">10
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">11
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">12
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">13
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">14
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">15
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">16
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">17
+&lt;/span>&lt;span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#55595f">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+&lt;pre tabindex="0" style="color:#abb2bf;background-color:#282c34;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c678dd">package&lt;/span> &lt;span style="color:#e06c75">main&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c678dd">import&lt;/span> (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#98c379">&amp;#34;github.com/gin-gonic/gin&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#98c379">&amp;#34;net/http&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#c678dd">func&lt;/span> &lt;span style="color:#61afef;font-weight:bold">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e06c75">r&lt;/span> &lt;span style="color:#56b6c2">:=&lt;/span> &lt;span style="color:#e06c75">gin&lt;/span>.&lt;span style="color:#61afef;font-weight:bold">Default&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#7f848e">// 测试路由
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#7f848e">&lt;/span> &lt;span style="color:#e06c75">r&lt;/span>.&lt;span style="color:#61afef;font-weight:bold">GET&lt;/span>(&lt;span style="color:#98c379">&amp;#34;/ping&amp;#34;&lt;/span>, &lt;span style="color:#c678dd">func&lt;/span>(&lt;span style="color:#e06c75">c&lt;/span> &lt;span style="color:#56b6c2">*&lt;/span>&lt;span style="color:#e06c75">gin&lt;/span>.&lt;span style="color:#e06c75">Context&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e06c75">c&lt;/span>.&lt;span style="color:#61afef;font-weight:bold">String&lt;/span>(&lt;span style="color:#e06c75">http&lt;/span>.&lt;span style="color:#e06c75">StatusOK&lt;/span>, &lt;span style="color:#98c379">&amp;#34;pong&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#7f848e">// 启动服务器
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#7f848e">&lt;/span> &lt;span style="color:#e06c75">r&lt;/span>.&lt;span style="color:#61afef;font-weight:bold">Run&lt;/span>(&lt;span style="color:#98c379">&amp;#34;:8080&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="启动应用--测试">启动应用 &amp;amp; 测试&lt;/h3>
+&lt;p>执行 &lt;code>go run main.go&lt;/code> 启动应用&lt;/p>
+&lt;p>&lt;img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/efde8dfda9ed4b1ca2137c7ddb4060bc~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?"
+loading="lazy"
+alt="image-20211009000758685.png"
+>&lt;/p>
+&lt;p>可以看到 HTTP 服务器启动成功，打开 &lt;a class="link" href="https://link.juejin.cn?target=http%3A%2F%2F127.0.0.1%3A8080%2Fping" target="_blank" rel="noopener"
+>http://127.0.0.1:8080/ping&lt;/a> 测试路由&lt;/p>
+&lt;p>&lt;img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8a536672108d43148064db16d938087a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?"
+loading="lazy"
+alt="image-20211009001053698.png"
+>&lt;/p></description></item></channel></rss>
