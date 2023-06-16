@@ -1,0 +1,363 @@
+/* Place your custom SCSS in HUGO_SITE_FOLDER/assets/scss/custom.scss */
+
+/* ----------------------------------------------- */
+
+/* 定义滚动条的宽度、高度和颜色 */
+::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+/* 定义滚动条滑块的样式 */
+::-webkit-scrollbar-thumb {
+	background-color: #aaaaaa;
+	border-radius: 5px;
+}
+
+/* ----------------------------------------------- */
+
+/* 引用，代码块等不贴合文章边缘 */
+.article-page {
+	blockquote,
+	figure,
+	.highlight,
+	pre,
+	.gallery,
+	.video-wrapper,
+	.table-wrapper,
+	.s_video_simple {
+		margin-left: 0;
+		margin-right: 0;
+		width: 100%;
+	}
+}
+
+/* ----------------------------------------------- */
+
+/* 代码块，图片圆角样式 */
+.highlight,
+pre,
+.gallery img {
+	border-radius: 5px;
+}
+
+/* ----------------------------------------------- */
+
+/* 头像圆角样式 */
+.site-avatar {
+	.site-logo {
+		border-radius: 7%;
+	}
+}
+
+/* ----------------------------------------------- */
+
+/* 下拉菜单圆角样式 */
+.menu {
+	padding-left: 0;
+	list-style: none;
+	flex-direction: column;
+	overflow-y: auto;
+	flex-grow: 1;
+	font-size: 1.59rem;
+	background-color: var(--card-background);
+	box-shadow: var(--shadow-l2);
+	display: none;
+	margin: 0;
+	border-radius: 10px;
+	padding: 30px 30px;
+	@include respond(xl) {
+		padding: 15px 0;
+	}
+
+	&,
+	.menu-bottom-section {
+		gap: 30px;
+		@include respond(xl) {
+			gap: 25px;
+		}
+	}
+
+	&.show {
+		display: flex;
+	}
+
+	@include respond(md) {
+		align-items: flex-end;
+		display: flex;
+		background-color: transparent;
+		padding: 0;
+		box-shadow: none;
+		margin: 0;
+	}
+
+	li {
+		position: relative;
+		vertical-align: middle;
+		padding: 0;
+
+		@include respond(md) {
+			width: 100%;
+		}
+
+		svg {
+			stroke-width: 1.33;
+
+			width: 20px;
+			height: 20px;
+		}
+
+		a {
+			height: 100%;
+			display: inline-flex;
+			align-items: center;
+			color: var(--body-text-color);
+			gap: var(--menu-icon-separation);
+		}
+
+		span {
+			flex: 1;
+		}
+
+		&.current {
+			a {
+				color: var(--accent-color);
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+/* ----------------------------------------------- */
+
+/* 页面间距调整 */
+.container {
+	margin-left: auto;
+	margin-right: auto;
+
+	.left-sidebar {
+		order: -3;
+		max-width: var(--left-sidebar-max-width);
+	}
+
+	.right-sidebar {
+		order: -1;
+		max-width: var(--right-sidebar-max-width);
+
+		/// Display right sidebar when min-width: lg
+		/* 		
+		@include respond(xl) {
+			display: flex;
+		} 
+*/
+	}
+
+	&.extended {
+		@include respond(md) {
+			max-width: 768px;
+			--left-sidebar-max-width: 20%;
+			--right-sidebar-max-width: 30%;
+		}
+
+		@include respond(lg) {
+			max-width: 924px;
+			--left-sidebar-max-width: 20%;
+			--right-sidebar-max-width: 30%;
+		}
+
+		@include respond(xl) {
+			max-width: 1024px;
+			--left-sidebar-max-width: 15%;
+			--right-sidebar-max-width: 25%;
+		}
+
+		@include respond(2xl) {
+			max-width: 1280px;
+			--left-sidebar-max-width: 10%;
+			--right-sidebar-max-width: 25%;
+		}
+
+		@media (min-width: 1920px) {
+			max-width: 1536px;
+			--left-sidebar-max-width: 10%;
+			--right-sidebar-max-width: 25%;
+		}
+	}
+
+	&.compact {
+		@include respond(md) {
+			--left-sidebar-max-width: 20%;
+			max-width: 768px;
+		}
+
+		@include respond(lg) {
+			max-width: 1024px;
+			--left-sidebar-max-width: 20%;
+		}
+
+		@include respond(xl) {
+			max-width: 1280px;
+		}
+	}
+}
+
+/* ----------------------------------------------- */
+
+/* 友情链接修改为三栏 */
+@media (min-width: 1024px) {
+	.article-list--compact.links {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		background: none;
+		box-shadow: none;
+		gap: 1rem;
+
+		article {
+			background: var(--card-background);
+			border: none;
+			box-shadow: var(--shadow-l2);
+			margin-bottom: 8px;
+			border-radius: var(--card-border-radius);
+			&:nth-child(odd) {
+				margin-right: 8px;
+			}
+		}
+	}
+}
+
+/* ----------------------------------------------- */
+
+/* 修复引用块内容 */
+a {
+	word-break: break-all;
+}
+
+code {
+	word-break: break-all;
+}
+
+/* ----------------------------------------------- */
+
+/* 文章列表封面图尺寸修改 */
+.article-list .article-image {
+	img {
+		width: 100%;
+		height: 150px;
+		object-fit: cover;
+
+		@include respond(md) {
+			height: 200px;
+		}
+
+		@include respond(xl) {
+			height: 200px !important;
+		}
+
+		@include respond(2xl) {
+			height: 250px !important;
+		}
+	}
+}
+/* ----------------------------------------------- */
+
+/* 分类页面隐藏文章图片 */
+.article-list--compact > article .article-image img,
+.section-card .section-image img {
+	display: none;
+}
+
+/* themes\stack\layouts\partials\article\components\links.html:19 add "id="link-img" */
+#link-img img {
+	display: block !important;
+}
+
+/* ----------------------------------------------- */
+
+/* 取消分类图片的渐变色 */
+.subsection-list .article-list--tile .has-image .article-details {
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 0%) !important;
+}
+
+/* ----------------------------------------------- */
+
+/* 代码高亮的行数设置为不可选 */
+.chroma .lnt,
+.chroma .line .ln {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+/* ----------------------------------------------- */
+
+/* highlight 间距调整 */
+.article-content .highlight {
+	padding-left: 15px;
+	padding-bottom: 15px;
+}
+
+/* ----------------------------------------------- */
+
+/* 代码高亮 MacOS 圆点样式 */
+.highlight:before {
+	content: "";
+	display: block;
+	background: url(/code-header.svg);
+	height: 30px;
+	width: 100%;
+	background-size: 45px;
+	background-repeat: no-repeat;
+	margin-bottom: -7px;
+	border-radius: 5px;
+	background-position: 10px 10px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* ----------------------------------------------- */
+
+/* 键盘标签样式 */
+kbd {
+	margin: 0 0.1em;
+	padding: 0.1em 0.6em;
+	font-size: 0.8em;
+	color: #242729;
+	background: #fff;
+	border: 1px solid #adb3b9;
+	border-radius: 3px;
+	box-shadow: 0px 1px 0 rgba(12, 13, 14, 0.2), 0 0 0 2px #fff inset;
+	white-space: nowrap;
+	vertical-align: middle;
+	font-family: monospace;
+}
+
+/* ----------------------------------------------- */
+
+/* 背景图片 themes\stack\layouts\_default\baseof.html:7 add "bg" */
+.bg {
+	background-image: url(/bg.svg);
+	background-position: 50%;
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+/* ----------------------------------------------- */
+
+/* 返回顶部按钮对暗色模式下适应 */
+:root {
+	--back-to-top-background: #ffffff;
+	--back-to-top-color: #000000;
+	&[data-scheme="dark"] {
+		--back-to-top-background: #252525;
+		--back-to-top-color: #ffffff;
+	}
+}
+
+/* ----------------------------------------------- */
+
+/* 修复 config.yaml 文件中 lineNumbersInTable 设置为 true 后代码溢出 */
+.highlight div {
+	overflow: auto;
+}
