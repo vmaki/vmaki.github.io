@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Maki 的主页</title><link>https://vmaki.github.io/</link><description>Recent content on Maki 的主页</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 16 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vmaki.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>封装属于你的Gin框架（一）：开篇 &amp; 项目初始化</title><link>https://vmaki.github.io/p/go/</link><pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate><guid>https://vmaki.github.io/p/go/</guid><description>&lt;img src="https://vmaki.github.io/p/go/go-gin.webp" alt="Featured image of post 封装属于你的Gin框架（一）：开篇 &amp; 项目初始化" />&lt;h3 id="前言">前言&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Maki 的主页</title><link>https://vmaki.com/</link><description>Recent content on Maki 的主页</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 16 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://vmaki.com/index.xml" rel="self" type="application/rss+xml"/><item><title>封装属于你的Gin框架（一）：开篇 &amp; 项目初始化</title><link>https://vmaki.com/p/go/</link><pubDate>Fri, 16 Jun 2023 00:00:00 +0000</pubDate><guid>https://vmaki.com/p/go/</guid><description>&lt;img src="https://vmaki.com/p/go/go-gin.webp" alt="Featured image of post 封装属于你的Gin框架（一）：开篇 &amp; 项目初始化" />&lt;h3 id="前言">前言&lt;/h3>
 &lt;p>我是一名 phper，由于各方面因素，决定转战 Go，PHP 基本都是用来开发 Web 项目的，所以这次就使用 Go 中最流行的 Web 框架 Gin 来进行二次封装，由于它自由度很高，没办法像 PHP 框架 Laravel 开箱即用，所以就诞生了这个系列的文章，带你一步步将基础服务封装到 Gin 中，方便以后更愉快的 CURD&lt;/p>
 &lt;h3 id="适用人群">适用人群&lt;/h3>
 &lt;ul>
@@ -167,7 +167,7 @@ alt="image-20211009000758685.png"
 &lt;p>&lt;img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8a536672108d43148064db16d938087a~tplv-k3u1fbpfcp-zoom-in-crop-mark:4536:0:0:0.awebp?"
 loading="lazy"
 alt="image-20211009001053698.png"
->&lt;/p></description></item><item><title>Hugo Stack 主题折腾笔记</title><link>https://vmaki.github.io/p/stack/</link><pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate><guid>https://vmaki.github.io/p/stack/</guid><description>&lt;img src="https://vmaki.github.io/p/stack/stack.webp" alt="Featured image of post Hugo Stack 主题折腾笔记" />&lt;h2 id="有话要说">有话要说&lt;/h2>
+>&lt;/p></description></item><item><title>Hugo Stack 主题折腾笔记</title><link>https://vmaki.com/p/stack/</link><pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate><guid>https://vmaki.com/p/stack/</guid><description>&lt;img src="https://vmaki.com/p/stack/stack.webp" alt="Featured image of post Hugo Stack 主题折腾笔记" />&lt;h2 id="有话要说">有话要说&lt;/h2>
 &lt;blockquote>
 &lt;p>博客系统基于 &lt;a class="link" href="https://gohugo.io/" target="_blank" rel="noopener"
 >Hugo-Extended&lt;/a>，版本：&lt;!-- raw HTML omitted -->0.113.0&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->
@@ -1268,7 +1268,7 @@ alt="image-20211009001053698.png"
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
 &lt;/div>
-&lt;/div></description></item><item><title>分类</title><link>https://vmaki.github.io/archives/</link><pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate><guid>https://vmaki.github.io/archives/</guid><description/></item><item><title>关于</title><link>https://vmaki.github.io/about/</link><pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate><guid>https://vmaki.github.io/about/</guid><description>&lt;h3 id="关于我">关于我&lt;/h3>
+&lt;/div></description></item><item><title>分类</title><link>https://vmaki.com/archives/</link><pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate><guid>https://vmaki.com/archives/</guid><description/></item><item><title>关于</title><link>https://vmaki.com/about/</link><pubDate>Thu, 20 Apr 2023 00:00:00 +0000</pubDate><guid>https://vmaki.com/about/</guid><description>&lt;h3 id="关于我">关于我&lt;/h3>
 &lt;p>🎈 你可以叫我&lt;!-- raw HTML omitted -->吴节操操操&lt;!-- raw HTML omitted -->，也可以叫我&lt;!-- raw HTML omitted -->SIAE.SAUCE&lt;!-- raw HTML omitted -->，零零后，喜欢折腾，正在努力成为一名前端开发者。&lt;!-- raw HTML omitted -->&lt;/p>
 &lt;h3 id="联系我">联系我&lt;/h3>
 &lt;p>📸 社交媒体：&lt;/p>
@@ -1287,4 +1287,4 @@ alt="image-20211009001053698.png"
 &lt;li>&lt;strong>Telegram：&lt;a class="link" href="https://t.me/siaesauce" target="_blank" rel="noopener"
 >@siaesauce&lt;/a>&lt;/strong>&lt;/li>
 &lt;li>&lt;strong>E-mail：&lt;a class="link" href="mailto:i@siae.me" >i@siae.me&lt;/a> / &lt;a class="link" href="mailto:siae.sauce@gmail.com" >siae.sauce@gmail.com&lt;/a>&lt;/strong>&lt;/li>
-&lt;/ul></description></item><item><title>搜索</title><link>https://vmaki.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://vmaki.github.io/search/</guid><description/></item></channel></rss>
+&lt;/ul></description></item><item><title>搜索</title><link>https://vmaki.com/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://vmaki.com/search/</guid><description/></item></channel></rss>
