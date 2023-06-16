@@ -12,10 +12,10 @@
         <pubDate>Fri, 21 Apr 2023 00:00:00 +0000</pubDate>
         
         <guid>https://vmaki.github.io/p/stack/</guid>
-        <description>&lt;img src="https://vmaki.github.io/p/stack/stack.webp" alt="Featured image of post Hugo Stack 主题折腾笔记" /&gt;&lt;h2 id=&#34;有话要说&#34;&gt;有话要说！&lt;/h2&gt;
+        <description>&lt;img src="https://vmaki.github.io/p/stack/stack.webp" alt="Featured image of post Hugo Stack 主题折腾笔记" /&gt;&lt;h2 id=&#34;有话要说&#34;&gt;有话要说&lt;/h2&gt;
 &lt;blockquote&gt;
 &lt;p&gt;博客系统基于 &lt;a class=&#34;link&#34; href=&#34;https://gohugo.io/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;Hugo-Extended&lt;/a&gt;，版本：&lt;!-- raw HTML omitted --&gt;0.110.0&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;
+    &gt;Hugo-Extended&lt;/a&gt;，版本：&lt;!-- raw HTML omitted --&gt;0.113.0&lt;!-- raw HTML omitted --&gt;&lt;!-- raw HTML omitted --&gt;
 博客主题来自 &lt;a class=&#34;link&#34; href=&#34;https://github.com/CaiJimmy/hugo-theme-stack&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Stack&lt;/a&gt;，版本：&lt;!-- raw HTML omitted --&gt;3.16.0&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1113,18 +1113,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;参考鸣谢&#34;&gt;参考&amp;amp;鸣谢&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://stack.jimmycai.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://stack.jimmycai.com/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://blog.linsnow.cn/p/join-hugo-and-stack/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.linsnow.cn/p/join-hugo-and-stack/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.reincarnatey.net/2023/build-hugo-blog-with-stack-mod/&lt;/a&gt;&lt;!-- raw HTML omitted --&gt;
-&lt;a class=&#34;link&#34; href=&#34;https://blog.echosec.top/p/custom-hugo-theme-styles/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;https://blog.echosec.top/p/custom-hugo-theme-styles/&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
+&lt;/div&gt;</description>
         </item>
         <item>
         <title>分类</title>
